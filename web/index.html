@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <title>Go URL expander</title>
+</head>
+
+<body>
+    <div class="container">
+        <main>
+            <form action="#">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label" for="url">URL</label>
+                        <input id="url" name="url" class="form-control" type="url" required="required">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-check-label" for="redirect">Redirect</label>
+                        <input id="redirect" name="redirect" class="form-check-input" type="checkbox" value="1">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-check-label" for="no-utm">Remove UTM</label>
+                        <input id="no-utm" name="no-utm" class="form-check-input" type="checkbox" value="1">
+                    </div>
+
+                </div>
+
+            </form>
+            <hr class="my-4">
+            <button class="w-100 btn btn-primary expand">Expand</button>
+            <hr class="my-4">
+            <div class="row g-3">
+                <div class="col-12">
+                    <textarea class="form-control" readonly id="result"></textarea>
+                </div>
+                <div class="col-12">
+                    <a id="result-link" target="_blank"></a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            $('button.expand').click(() => {
+                $('#result').text('');
+                $('#result-link').attr('href', '#').text('');
+                $.ajax({
+                    url: 'expand',
+                    method: 'GET',
+                    data: $('form').serialize()
+                })
+                    .always((data, status, jqXHR) => {
+                        $('#result').text(data);
+                        if (status === 'success') {
+                            $('#result-link').attr('href', data).text('open in new tab');
+                        }
+                    });
+            });
+
+        });
+    </script>
+</body>
+
+</html>
