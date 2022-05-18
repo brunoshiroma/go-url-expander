@@ -9,6 +9,6 @@ func main() {
 		l      = internal.Logger()
 		server = internal.NewHttpServer(internal.Config.Port, internal.Config.BindHost)
 	)
-	l.Infof("Staring server on %s:%d", internal.Config.BindHost, internal.Config.Port)
+	l.Infof("Starting server on %s:%d", internal.Config.BindHost, internal.Config.Port)
 	server.ListenAndServe()
 }

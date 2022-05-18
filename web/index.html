@@ -14,6 +14,7 @@
 <body>
     <div class="container">
         <main>
+            <h2>URL Expander</h2>
             <form action="#">
                 <div class="row g-3">
                     <div class="col-12">
@@ -35,6 +36,7 @@
             <hr class="my-4">
             <button class="w-100 btn btn-primary expand">Expand</button>
             <hr class="my-4">
+            <h3>Result</h3>
             <div class="row g-3">
                 <div class="col-12">
                     <textarea class="form-control" readonly id="result"></textarea>
@@ -62,6 +64,9 @@
                         $('#result').text(data);
                         if (status === 'success') {
                             $('#result-link').attr('href', data).text('open in new tab');
+                            if($('#redirect').prop('checked')){
+                                window.location.href = data;
+                            }
                         }
                     });
             });
