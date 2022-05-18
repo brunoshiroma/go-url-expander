@@ -3,6 +3,8 @@
 build:
   languages:
     - go
-
+release:
+  command:
+    - make build
 run:
-  web: main
+  web: go-url-expander
