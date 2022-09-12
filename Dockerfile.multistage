@@ -1,0 +1,15 @@
+FROM golang:alpine as builder
+
+WORKDIR /app
+
+RUN apk update && apk add make
+
+COPY . .
+
+RUN GOOS=linux GARCH=amd64 CGO_ENABLED=0 make build
+
+FROM alpine as runtime
+
+COPY --from=builder /app/go-url-expander /app/go-url-expander
+
+CMD ["/app/go-url-expander"]
