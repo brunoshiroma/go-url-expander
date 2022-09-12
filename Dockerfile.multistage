@@ -6,7 +6,7 @@ RUN apk update && apk add make
 
 COPY . .
 
-RUN GOOS=linux GARCH=amd64 CGO_ENABLED=0 make build
+RUN GOOS=linux CGO_ENABLED=0 make build
 
 FROM alpine as runtime
 
