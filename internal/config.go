@@ -11,6 +11,7 @@ type EnvConfig struct {
 	Port           int    `env:"PORT,default=60080"`
 	BindHost       string `env:"BIND_HOST,default=127.0.0.1"`
 	RequestTimeout int    `env:"REQUEST_TIMEOUT,default=5"`
+	MaxRedirects   int    `env:"MAX_REDIRECTS,default=5"`
 }
 
 var Config EnvConfig

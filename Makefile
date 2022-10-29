@@ -10,3 +10,6 @@ build-image: build
 
 build-image-multi: 
 	docker build -t go-url-expander -f Dockerfile.multistage .
+
+test-cover:
+	go test -cover ./...

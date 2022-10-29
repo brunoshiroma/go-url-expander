@@ -17,11 +17,10 @@ var (
 
 func init() {
 	handleRedirect := func(req *http.Request, via []*http.Request) error {
-		max_redirect := 1
-		if len(via) == max_redirect {
-			return nil
+		if len(via) == Config.MaxRedirects {
+			return errors.New("TARGET_URL")
 		}
-		return errors.New("TARGET_URL")
+		return nil
 	}
 
 	client = http.Client{
@@ -39,7 +38,6 @@ func handle(w http.ResponseWriter, req *http.Request) {
 		targetUrl    = req.URL.Query().Get("url")
 		cleanUTM     = req.URL.Query().Get("no-utm")
 		redirect     = req.URL.Query().Get("redirect")
-		client       http.Client
 		resp         *http.Response
 		err          error
 		resultUrl    string
