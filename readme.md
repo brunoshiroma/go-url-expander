@@ -9,6 +9,3 @@ Open shortened url on remote server and retrieve the final full url ( or without
 | REQUEST_TIMEOUT | timeout for making the remote http request default 5s |
 
 More details on file [config.go](internal/config.go#L10)
-
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
